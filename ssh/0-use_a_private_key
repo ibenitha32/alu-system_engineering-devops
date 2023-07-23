@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#connects the ssh to my intranet server.
+
+ssh -i ~/.ssh/school ubuntu@3.80.43.97
