@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-#connects private key to my intranet server.
-
-ssh -i ~/.ssh/school ubuntu@3.80.43.97
