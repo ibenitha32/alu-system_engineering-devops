@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Creating a server with a redirect
+
+# Updating all packages
+sudo apt-get update -y && sudo apt-get upgrade -y
+
+# Install Nginx
+sudo apt-get install nginx -y
+
+# Creating an index page
+echo "Holberton School" | sudo tee /var/www/html/index.html
+
+# Creating a 404 page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+# Write data to nginx.conf
+echo "
+events {
+
+}
+
+http {
+	server {
+		listen 80;
+
+		root /var/www/html;
+
+		error_page 404 /404.html;
+
+		add_header X-Served-By \$hostname;
+
+		location /redirect_me {
+			return 301 https://google.com;
+		}
+	}
+}" | sudo tee /etc/nginx/nginx.conf
+
+# Reload nginx
+sudo service nginx restart
